@@ -9,11 +9,6 @@ class Band {
     this.votes,
   });
 
-  @override
-  String toString() {
-    return this.name;
-  }
-
   factory Band.fromMap(Map<String, dynamic> obj) => Band(
         id: obj['id'],
         name: obj['name'],
