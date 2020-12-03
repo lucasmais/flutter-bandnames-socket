@@ -9,6 +9,11 @@ class Band {
     this.votes,
   });
 
+  @override
+  String toString() {
+    return this.name;
+  }
+
   factory Band.fromMap(Map<String, dynamic> obj) => Band(
         id: obj.containsKey('id') ? obj['id'] : 'no-id',
         name: obj.containsKey('name') ? obj['name'] : 'no-name',

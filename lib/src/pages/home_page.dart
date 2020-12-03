@@ -45,10 +45,7 @@ class _HomePageState extends State<HomePage> {
     final socketService = Provider.of<SocketService>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'BandNames',
-          style: TextStyle(color: Colors.black87),
-        ),
+        title: Text('BandNames', style: TextStyle(color: Colors.black87)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 1,
@@ -72,7 +69,6 @@ class _HomePageState extends State<HomePage> {
           _showGraph(),
           Expanded(
             child: ListView.builder(
-              physics: BouncingScrollPhysics(),
               itemCount: bands.length,
               itemBuilder: (context, i) => bandTile(bands[i]),
             ),
@@ -176,45 +172,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _showGraph() {
-    Map<String, double> dataMap = {
-      // 'Flutter': 5,
-      // 'React': 3,
-      // 'Xamarin': 2,
-      // 'Ionic': 2,
-    };
+    Map<String, double> dataMap = {};
     bands.forEach((band) {
       dataMap.putIfAbsent(band.name, () => band.votes.toDouble());
     });
-    return PieChart(
-      dataMap: dataMap,
-      chartValuesOptions: ChartValuesOptions(
-          showChartValuesInPercentage: true, showChartValueBackground: true),
+    return Container(
+      width: double.infinity,
+      height: 200,
+      child: PieChart(
+        dataMap: dataMap,
+        chartValuesOptions: ChartValuesOptions(
+            showChartValuesInPercentage: true, showChartValueBackground: true),
+      ),
     );
-    // return PieChart(
-    //   dataMap: dataMap,
-    //   animationDuration: Duration(milliseconds: 800),
-    //   chartLegendSpacing: 32,
-    //   chartRadius: MediaQuery.of(context).size.width / 3.2,
-    //   // colorList: colorList,
-    //   initialAngleInDegree: 0,
-    //   chartType: ChartType.ring,
-    //   ringStrokeWidth: 32,
-    //   centerText: "HYBRID",
-    //   legendOptions: LegendOptions(
-    //     showLegendsInRow: false,
-    //     legendPosition: LegendPosition.right,
-    //     showLegends: true,
-    //     legendShape: BoxShape.circle,
-    //     legendTextStyle: TextStyle(
-    //       fontWeight: FontWeight.bold,
-    //     ),
-    //   ),
-    //   chartValuesOptions: ChartValuesOptions(
-    //     showChartValueBackground: true,
-    //     showChartValues: true,
-    //     showChartValuesInPercentage: false,
-    //     showChartValuesOutside: false,
-    //   ),
-    // );
   }
 }
